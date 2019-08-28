@@ -25,38 +25,27 @@ $(document).ready(function () {
       fecmen.push(fechas[i])
       else fecma.push(fechas[i])
     }
-    fecmen.sort().reverse();fecma.sort().reverse();  //Ordena los eventos segun la fecha (los mas cercanos primero)
+    fecmen.sort().reverse();fecma.sort();  //Ordena los eventos segun la fecha (los mas cercanos primero)
     //Extrae solo dos eventos
-    var primer_ev=fecmen[0]
-    var segun_ev=fecmen[1]
-    evento_1 = eventos.find(element=>element.fecha==primer_ev)
-    evento_2 = eventos.find(element=>element.fecha==segun_ev)
-    var html=`<div class="ev"><h2>${evento_1.nombre}</h2>
-              <p>${evento_1.fecha}</p>
-              <p>${evento_1.descripcion}</p>
-              </div>
-              <div class="ev"><h2>${evento_2.nombre}</h2>
-              <p>${evento_2.fecha}</p>
-              <p>${evento_2.descripcion}</p>
-              </div>`;
-    document.getElementById('pasados').innerHTML=html
-
-    var primer_ev=fecma[0]
-    var segun_ev=fecma[1]
-    evento_1 = eventos.find(element=>element.fecha==primer_ev)
-    evento_2 = eventos.find(element=>element.fecha==segun_ev)
-    var html=`<div class="ev"><h2>${evento_1.nombre}</h2>
-              <p>${evento_1.fecha}</p>
-              <p>${evento_1.descripcion}</p>
-              </div>
-              <div class="ev"><h2>${evento_2.nombre}</h2>
-              <p>${evento_2.fecha}</p>
-              <p>${evento_2.descripcion}</p>
-              </div>`;
-    document.getElementById('proximos').innerHTML=html
+    mostrarEv(fecmen,eventos,"pasados")
+    mostrarEv(fecma,eventos,"proximos")
   })
 
-  
+  function mostrarEv(Array,response,String){
+    var primer_ev=Array[0]
+    var segun_ev=Array[1]
+    evento_1 = response.find(element=>element.fecha==primer_ev)
+    evento_2 = response.find(element=>element.fecha==segun_ev)
+    var html=`<div class="ev"><h2>${evento_1.nombre}</h2>
+              <p>${evento_1.fecha}</p>
+              <p>${evento_1.descripcion}</p>
+              </div>
+              <div class="ev"><h2>${evento_2.nombre}</h2>
+              <p>${evento_2.fecha}</p>
+              <p>${evento_2.descripcion}</p>
+              </div>`;
+    document.getElementById(String).innerHTML=html
+  }
   
   
 
