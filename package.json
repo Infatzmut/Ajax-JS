@@ -1,0 +1,19 @@
+{
+  "name": "ajax-js",
+  "version": "1.0.0",
+  "description": "Ajax Repository just for testing",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Infatzmut/Ajax-JS.git"
+  },
+  "author": "Infatzmut",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Infatzmut/Ajax-JS/issues"
+  },
+  "homepage": "https://github.com/Infatzmut/Ajax-JS#readme"
+}
