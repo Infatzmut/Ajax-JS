@@ -3,14 +3,23 @@ name: 'Deploy workflow'
 on:
   release:
     types: [published]
-
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    name: 'Deploy to Netlify'
-    steps:
-      - uses: actions/checkout@v3
-      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
-        with:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETFLIFY_TOKEN }}
-          NETLIFY_DEPLOY_TO_PROD: true
+    build:
+        runs-on: ubuntu-22.04
+        steps:
+        - uses: actions/checkout@v3
+        - name: Preview deploy to Netlify
+          uses: nwtgck/actions-netlify@v2.0
+          with:
+            publish-dir: './'
+            production-branch: master
+            production-deploy: true
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            deploy-message: "Deploy from GitHub Actions"
+            enable-pull-request-comment: false
+            enable-commit-comment: true
+            overwrites-pull-request-comment: true
+          env:
+            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          timeout-minutes: 2
